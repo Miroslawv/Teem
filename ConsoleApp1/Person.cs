@@ -1,4 +1,3 @@
-﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,78 +8,42 @@ namespace ConsoleApp1
 {
     internal class Person
     {
-        String name;
-        String surname;
+        string name;
+        string surname;
         DateTime date;
-
         public Person(string name, string surname, DateTime date)
         {
-            this.name = name;
-            this.surname = surname;
-            this.date = date;
+            Name = name;
+            Surname = surname;
+            Date = date;
         }
-
         public Person()
         {
-            this.name = "Имя";
-            this.surname = "Фамилия";
-            this.date= DateTime.Now;
+            Name = "Имя";
+            Surname = "Фамилия";
+            Date = DateTime.Today;
         }
-
-        public String Name
+        public string Name
         {
-            get 
-            { 
-                return this.name; 
-            } 
-            set 
-            {
-                this.name = value; 
-            }
+            get => this.name; 
+            set => this.name = value; 
         }
-
-        public String Surname
+        public string Surname
         {
-            get
-            {
-                return this.surname;
-            }
-            set
-            {
-                this.surname = value;
-            }
+            get => this.surname;
+            set => this.surname = value;
         }
-
         public DateTime Date
         {
-            get
-            {
-                return this.date;
-            }
-            set
-            {
-                this.date = value;
-            }
+            get => this.date;
+            set => this.date = value;
         }
-
         public int Date2
         {
-            get
-            {
-                return date.Year;
-            }
-            set
-            {
-                date = new DateTime(value, date.Month, date.Day);
-            }
-
+            get => Date.Year;
+            set => Date = new DateTime(value, Date.Month, Date.Day);
         }
-
-        public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToString("dd.MM.yyyy")}";
-
-        public virtual void ToShortString()
-        {
-            Console.WriteLine($"Имя: {Name}, Фамилия: {Surname}");
-        }
+        public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.Date}";
+        public virtual string ToShortString() => $"Имя: {Name}, Фамилия: {Surname}";
     }
 }
