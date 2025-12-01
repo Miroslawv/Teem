@@ -43,6 +43,7 @@ namespace ConsoleApp1
             get => Date.Year;
             set => Date = new DateTime(value, Date.Month, Date.Day);
         }
+
         public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToShortDateString()}";
         public virtual string ToShortString() => $"Имя: {Name}, Фамилия: {Surname}";
     }
