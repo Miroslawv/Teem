@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,13 @@ namespace ConsoleApp1
                 date = new DateTime(value, date.Month, date.Day);
             }
 
+        }
+
+        public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToString("dd.MM.yyyy")}";
+
+        public virtual void ToShortString()
+        {
+            Console.WriteLine($"Имя: {Name}, Фамилия: {Surname}");
         }
     }
 }
