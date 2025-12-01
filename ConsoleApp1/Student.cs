@@ -44,7 +44,7 @@ namespace ConsoleApp1
         {
             get => this.numGroup;
             set {
-                if (this.numGroup < 1) throw new ArgumentException("Номер группы не может быть меньше 1!");
+                if (value < 1) throw new ArgumentException("Номер группы не может быть меньше 1!");
                 this.numGroup = value; 
             }
         }
@@ -63,7 +63,7 @@ namespace ConsoleApp1
             {
                 double avg = 0;
                 Array.ForEach(exams, exam => avg += exam.Grade);
-                return avg / exams.Length;
+                return Math.Round(avg / exams.Length, 2);
             }
         }
         public bool this[Education i] { get => Educ == i; }
