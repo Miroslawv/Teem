@@ -44,7 +44,7 @@ namespace ConsoleApp1
         {
             get => this.numGroup;
             set {
-                if (this.numGroup < 1) throw new ArgumentException("Номер группы не может быть меньше 1!");
+                if (value < 1) throw new ArgumentException("Номер группы не может быть меньше 1!");
                 this.numGroup = value; 
             }
         }
@@ -77,10 +77,10 @@ namespace ConsoleApp1
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($", образование: {Educ}, номер группы: {NumGroup}. Экзамены:\n");
+            sb.Append($"{Pers}, образование: {Educ}, номер группы: {NumGroup}. Экзамены:\n");
             Array.ForEach(exams, exam => sb.Append(exam + "\n"));
             return sb.ToString();
         }
-        public virtual string ToShortString() => $", образование: {Educ}, номер группы: {NumGroup}, средний бал: {Avg}.";
+        public virtual string ToShortString() => $"{Pers}, образование: {Educ}, номер группы: {NumGroup}, средний бал: {Avg}.";
     }
 }
