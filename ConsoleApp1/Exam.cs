@@ -21,8 +21,8 @@ namespace ConsoleApp1
         {
             Name = "Noname";
             Grade = 0;
-            Date = DateTime.Now;
+            Date = DateTime.Today;
         }
-        public override string ToString() => $"Название предмета: {Name}, оценка за экзамен: {Grade}, дата проведение экзамена: {Date}.";
+        public override string ToString() => $"Название предмета: {Name}, оценка за экзамен: {Grade}, дата проведение экзамена: {Date.ToShortDateString()}.";
     }
 }

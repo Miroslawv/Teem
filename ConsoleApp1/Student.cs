@@ -63,7 +63,7 @@ namespace ConsoleApp1
             {
                 double avg = 0;
                 Array.ForEach(exams, exam => avg += exam.Grade);
-                return avg / exams.Length;
+                return Math.Round(avg / exams.Length, 2);
             }
         }
         public bool this[Education i] { get => Educ == i; }
