@@ -62,6 +62,17 @@ namespace ConsoleApp1
             }
         }
 
+        public int Date2
+        {
+            get
+            {
+                return date.Year;
+            }
+            set
+            {
+                date = new DateTime(value, date.Month, date.Day);
+            }
 
+        }
     }
 }
