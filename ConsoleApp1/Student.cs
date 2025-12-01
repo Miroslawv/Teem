@@ -77,10 +77,10 @@ namespace ConsoleApp1
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($", образование: {Educ}, номер группы: {NumGroup}. Экзамены:\n");
+            sb.Append($"{Pers}, образование: {Educ}, номер группы: {NumGroup}. Экзамены:\n");
             Array.ForEach(exams, exam => sb.Append(exam + "\n"));
             return sb.ToString();
         }
-        public virtual string ToShortString() => $", образование: {Educ}, номер группы: {NumGroup}, средний бал: {Avg}.";
+        public virtual string ToShortString() => $"{Pers}, образование: {Educ}, номер группы: {NumGroup}, средний бал: {Avg}.";
     }
 }
