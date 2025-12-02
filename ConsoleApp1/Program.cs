@@ -65,8 +65,8 @@ Console.WriteLine(st);
 
 nrow = 0;
 ncolumn = 0;
+do { nrow = setIntValueByUser("Введите количество строк в массивах: "); } while (nrow < 1);
 do { ncolumn = setIntValueByUser("Введите столбцов строк в массивах: "); } while (ncolumn < 1);
-do { nrow = setIntValueByUser("Введите столбцов строк в массивах: "); } while (ncolumn < 1);
 
 Exam[] arr1 = new Exam[nrow * ncolumn];
 Exam[,] arr2 = new Exam[nrow, ncolumn];
