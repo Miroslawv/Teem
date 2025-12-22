@@ -149,7 +149,16 @@ for(int i = 0; i < st.Length - 1; i++)
     }
 }
 
-foreach (Student student in st)
+double start3 = Environment.TickCount;
+for (int i = 0; i < nrow; i++)
 {
-    Console.WriteLine(student.ToShortString());
+    for (int j = 0; j < ncolumn; j++)
+    {
+        array3[i][j] = new Person();
+    }
 }
+double end3 = Environment.TickCount;
+
+Console.WriteLine($"Время обработки одномерного массива: {end1 - start1}");
+Console.WriteLine($"Время обработки двумерного массива: {end2 - start2}");
+Console.WriteLine($"Время обработки ступенчатого массива: {end3 - start3}");
