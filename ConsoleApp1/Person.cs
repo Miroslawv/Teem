@@ -1,50 +1,87 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ConsoleApp1;
 
-namespace ConsoleApp1
+internal class Person : IDateAndCopy
 {
-    internal class Person
+    protected string name;
+    protected string surname;
+    protected DateTime date;
+    public Person(string name, string surname, DateTime date)
     {
-        string name;
-        string surname;
-        DateTime date;
-        public Person(string name, string surname, DateTime date)
+        Name = name;
+        Surname = surname;
+        Date = date;
+    }
+    public Person()
+    {
+        Name = "Имя";
+        Surname = "Фамилия";
+        Date = DateTime.Today;
+    }
+    public string Name
+    {
+        get
         {
-            Name = name;
-            Surname = surname;
-            Date = date;
+            return name;
         }
-        public Person()
+        set
         {
-            Name = "Имя";
-            Surname = "Фамилия";
-            Date = DateTime.Today;
+            name = value;
         }
-        public string Name
+    }
+    public string Surname
+    {
+        get
         {
-            get => this.name; 
-            set => this.name = value; 
+            return surname;
         }
-        public string Surname
+        set
         {
-            get => this.surname;
-            set => this.surname = value;
+            surname = value;
         }
-        public DateTime Date
+    }
+    public DateTime Date
+    {
+        get
         {
-            get => this.date;
-            set => this.date = value;
+            return date;
         }
-        public int Date2
+        set
         {
-            get => Date.Year;
-            set => Date = new DateTime(value, Date.Month, Date.Day);
+            date = value;
         }
-
-        public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToShortDateString()}";
-        public virtual string ToShortString() => $"Имя: {Name}, Фамилия: {Surname}";
+    }
+    public int Date2
+    {
+        get
+        {
+            return Date.Year;
+        }
+        set
+        {
+            Date = new DateTime(value, Date.Month, Date.Day);
+        }
+    }
+    public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToShortDateString()}";
+    public virtual string ToShortString() => $"Имя: {Name}, Фамилия: {Surname}";
+    public override bool Equals(object? obj)
+    {
+        return (obj == null || !(obj is Person p)) ? false :
+        this.Name == p.Name && this.Surname == p.Surname && this.Date == p.Date;
+    }
+    public static bool operator ==(Person? p1, Person? p2) 
+    {
+        return p1 == null ? p2 == null : p1.Equals(p2);
+    }
+    public static bool operator !=(Person? p1, Person? p2) 
+    { 
+        return p1 == null ? p2 != null : !p1.Equals(p2); 
+    }
+    public override int GetHashCode() 
+    { 
+        return this == null ? base.GetHashCode() : (name + surname + date.ToString()).GetHashCode(); 
+    }
+    public virtual object DeepCopy() 
+    { 
+        return new Person(this.Name, this.Surname, this.Date); 
     }
 }
