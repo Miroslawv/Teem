@@ -11,6 +11,7 @@ internal class Person : IDateAndCopy
         Surname = surname;
         Date = date;
     }
+
     public Person()
     {
         Name = "Имя";
