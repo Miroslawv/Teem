@@ -1,88 +1,55 @@
-using ConsoleApp1;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-internal class Person : IDateAndCopy
+namespace ConsoleApp1
 {
-    protected string name;
-    protected string surname;
-    protected DateTime date;
-    public Person(string name, string surname, DateTime date)
+    internal class Person : IDateAndCopy
     {
-        Name = name;
-        Surname = surname;
-        Date = date;
-    }
-
-    public Person()
-    {
-        Name = "Имя";
-        Surname = "Фамилия";
-        Date = DateTime.Today;
-    }
-    public string Name
-    {
-        get
+        protected string name;
+        protected string surname;
+        protected DateTime date;
+        public Person(string name, string surname, DateTime date)
         {
-            return name;
+            Name = name;
+            Surname = surname;
+            Date = date;
         }
-        set
+        public Person()
         {
-            name = value;
+            Name = "Имя";
+            Surname = "Фамилия";
+            Date = DateTime.Today;
         }
-    }
-    public string Surname
-    {
-        get
+        public string Name
         {
-            return surname;
+            get => this.name; 
+            set => this.name = value; 
         }
-        set
+        public string Surname
         {
-            surname = value;
+            get => this.surname;
+            set => this.surname = value;
         }
-    }
-    public DateTime Date
-    {
-        get
+        public DateTime Date
         {
-            return date;
+            get => this.date;
+            set => this.date = value;
         }
-        set
+        public int Date2
         {
-            date = value;
+            get => Date.Year;
+            set => Date = new DateTime(value, Date.Month, Date.Day);
         }
-    }
-    public int Date2
-    {
-        get
-        {
-            return Date.Year;
-        }
-        set
-        {
-            Date = new DateTime(value, Date.Month, Date.Day);
-        }
-    }
-    public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToShortDateString()}";
-    public virtual string ToShortString() => $"Имя: {Name}, Фамилия: {Surname}";
-    public override bool Equals(object? obj)
-    {
-        return (obj == null || !(obj is Person p)) ? false :
-        this.Name == p.Name && this.Surname == p.Surname && this.Date == p.Date;
-    }
-    public static bool operator ==(Person? p1, Person? p2) 
-    {
-        return p1 == null ? p2 == null : p1.Equals(p2);
-    }
-    public static bool operator !=(Person? p1, Person? p2) 
-    { 
-        return p1 == null ? p2 != null : !p1.Equals(p2); 
-    }
-    public override int GetHashCode() 
-    { 
-        return this == null ? base.GetHashCode() : (name + surname + date.ToString()).GetHashCode(); 
-    }
-    public virtual object DeepCopy() 
-    { 
-        return new Person(this.Name, this.Surname, this.Date); 
+        public override string ToString() => $"Имя: {Name}, Фамилия: {Surname}, Дата рождения: {Date.ToShortDateString()}";
+        public virtual string ToShortString() => $"Имя: {Name}, Фамилия: {Surname}";
+        public override bool Equals(object? obj) => (obj is null || !(obj is Person p)) ? false : 
+            this.Name == p.Name && this.Surname == p.Surname && this.Date == p.Date;
+        public static bool operator ==(Person? p1, Person? p2) => p1 is null ? p2 is null : p1.Equals(p2);
+        public static bool operator !=(Person? p1, Person? p2) => p1 is null ? p2 is not null : !p1.Equals(p2);
+        public override int GetHashCode() => this is null ? base.GetHashCode() : (name + surname + date.ToString()).GetHashCode();
+        public virtual object DeepCopy() => new Person(this.Name, this.Surname, this.Date);
     }
 }
