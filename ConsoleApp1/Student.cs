@@ -116,15 +116,9 @@ namespace ConsoleApp1
         }
         public IEnumerable<Test> GetEnumeratorPassedTest()
         {
-            Test t = new();
-            Exam e = new();
-            foreach (object o in this.GetEnumeratorTestsExams())
-            {
-                if (o is Test t1) t = t1;
-                else if (o is Exam e1) e = e1;
-                if (t.NameSubject == e.Name)
-                    if (t.TestPassed && e.Grade > 2) yield return t;
-            }
+            foreach (Exam e in this.Exams)
+                foreach(Test t in this.Tests)
+                    if ((t.NameSubject == e.Name) && (t.TestPassed && e.Grade > 2)) yield return t;
         }
         public void AddExam(params Exam[] exams) => Exams.AddRange(exams);
         public override string ToString()
@@ -171,8 +165,8 @@ namespace ConsoleApp1
         public override object DeepCopy()
         {
             Student st = new(new Person(this.Pers.Name, this.Pers.Surname, this.Pers.Date), Educ, NumGroup, new ArrayList(), new ArrayList());
-            st.Exams.AddRange(this.Exams);
-            st.Tests.AddRange(this.Tests);
+            foreach (Exam e in this.Exams) st.Exams.Add(e.DeepCopy());
+            foreach (Test t in this.Tests) st.Tests.Add(t.DeepCopy());
             return st;
         }
     }
