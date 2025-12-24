@@ -20,5 +20,6 @@ namespace ConsoleApp1
 
         }
         public override string ToString() => $"Предмет: {NameSubject}, Зачёт: {TestPassed}";
+        public Test DeepCopy() => new Test(this.NameSubject, this.TestPassed);
     }
 }
