@@ -9,21 +9,20 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class StudentEnumerator : IEnumerator
+    internal class StudentEnumerator : IEnumerator<string>
     {
-        ArrayList examsTests;
+        List<string> Names;
         int position = -1;
         public StudentEnumerator(ArrayList Exams, ArrayList Tests)
         {
-            examsTests = new ArrayList();
+            Names = new List<string>();
             foreach (Exam i in Exams)
                 foreach (Test j in Tests)
-                    if (i.Name == j.NameSubject)
-                    { examsTests.Add(i); examsTests.Add(j); }
+                    if (i.Name == j.NameSubject) Names.Add(i.Name);
         }
         public bool MoveNext()
         {
-            if (position < examsTests.Count - 1)
+            if (position < Names.Count - 1)
             {
                 position++;
                 return true;
@@ -31,14 +30,16 @@ namespace ConsoleApp1
             else
                 return false;
         }
-        public object Current
+        public string Current
         {
             get
             {
-                if (position == -1 || position >= examsTests.Count) throw new ArgumentException("Выход за длину списка!");
-                return examsTests[position] is Exam e ? e.Name : (examsTests[position] as Test).NameSubject;
+                if (position == -1 || position >= Names.Count) throw new ArgumentException("Выход за длину списка!");
+                return Names[position];
             }
         }
+        object IEnumerator.Current => Current;
+        public void Dispose() { }
         public void Reset() => position = -1;
     }
 }
